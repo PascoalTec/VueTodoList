@@ -4,15 +4,17 @@
     <div>
       Two-way data binding
     </div>
-    
+
     <br>
 
+    <div>
+      <label>Nome</label><br>
     <input
         v-model="name"
         type="text"
 
     >
-
+  </div>
     <h1 :class="{classVar: true, 'title-home': isHome}">
       Curso Vue 3
     </h1>
