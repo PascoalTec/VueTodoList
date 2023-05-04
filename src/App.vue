@@ -11,9 +11,10 @@
       <label>Nome</label><br>
     <input
         v-model="name"
-        type="text"
+        type="text"    
+    > <br>
+        {{ name }}
 
-    >
   </div>
     <h1 :class="{classVar: true, 'title-home': isHome}">
       Curso Vue 3
