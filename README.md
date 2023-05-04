@@ -94,6 +94,40 @@ v-model -> formulários
 
 ## Eventos
 ```
-v-on -> capture o evento desse elemento
-<button> </button>
+v-on -> capture o evento desse elemento  (PODEMOS ENCURTAR O V-ON, USANDO @)
+<button v-on:click="onClick()"> </button>
+(PODEMOS ENCURTAR O V-ON, USANDO @)
+
+@click="onClick()"
+<button @click="onClick()"> </button>
+methods: {
+  onClick(){
+        console.log('click');
+      }
+}
+
+Ex:     
+
+<div>
+      <button v-on:click="onClick()">
+              Enviar
+            </button>
+    </div>
+
+    $evt -> MOUSEVENT
+methods: {
+  onClick($evt){
+        console.log('click', $evt);
+      }
+}
+```
+
+## Modificadores de Evento (para modificar o comportamento do evento)
+```
+.stop
+.prevent
+.self
+.capture
+.once
+.passive
 ```

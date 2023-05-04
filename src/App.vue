@@ -2,12 +2,37 @@
   <div>
 
     <div>
-      <button v-on:click="onclick()"></button>
-              Enviar 
+      <button v-on:click="onClick()">
+              Enviar
+            </button>
     </div>
 
+    <br>
+
+    <div 
+    @mouseover="onMouseOver()"
+    @mouseout="onMouseOut()"
+    >
+      Mouse Over
+    </div>
+
+    <br><br>
 
     <div>
+
+      <form 
+        action="https:google.com"
+        @submit="onSubmit"
+      >
+        <button type="submit">
+          Submit
+      </button>
+
+      </form>
+
+    </div>
+
+    <div><br>
       Two-way data binding
       v-model -> formulários
     </div>
@@ -105,7 +130,7 @@
 </div>
   
 
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+
 </template>
 
 <script>
@@ -122,42 +147,23 @@ export default {
       styleClass: {'color': 'aqua', 'background-color': 'black', 'font-size': '20px'},
       isHome: false,
       classVar: 'title',
-      pClass: ['text', 'text-home'],
-      todos: [
-  {
-    "userId": 1,
-    "id": 1,
-    "title": "delectus aut autem",
-    "completed": false,
-    "imgSrc":'https://via.placeholder.com/150'
-  },
-  {
-    "userId": 1,
-    "id": 2,
-    "title": "quis ut nam facilis et officia qui",
-    "completed": false,
-    "imgSrc":'https://via.placeholder.com/150'
-  },
-  {
-    "userId": 1,
-    "id": 3,
-    "title": "fugiat veniam minus",
-    "completed": false
-  },
-  {
-    "userId": 1,
-    "id": 4,
-    "title": "et porro tempora",
-    "completed": true
-  },
-  {
-    "userId": 1,
-    "id": 5,
-    "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-    "completed": false
-  }
-]
+      pClass: ['text', 'text-home']
+        }
+    },
+    methods:{
+      onClick() {
+        console.log('click');
+      },
+      onMouseOver() {
+        console.log('Mouse over');
+      },
+      onMouseOut() {
+        console.log('mouse out');
+      },
+      onSubmit(){
+        console.log('submit');
       }
+
     }
   }
 </script>
