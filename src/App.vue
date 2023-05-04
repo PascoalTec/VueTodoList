@@ -2,7 +2,14 @@
   <div>
 
     <div>
+      <button v-on:click="onclick()"></button>
+              Enviar 
+    </div>
+
+
+    <div>
       Two-way data binding
+      v-model -> formulários
     </div>
 
     <br>
@@ -15,28 +22,85 @@
     > <br>
         {{ name }}
 
+      <br>
+
+      <div>
+        <label>Sports</label><br>
+        <select v-model="sports">
+          <option value="">Escolha</option>
+          <option value="futebol">Futebol</option>
+          <option value="Skate">Skate</option>
+          <option value="Tenis">Tenis</option>
+        </select> <br>
+        {{ sports }}
+      </div>
+
+      <br><br>
+      <div>
+        <label>Newsletter</label><br>
+        <input
+          v-model="newsletter"
+          type="radio"  
+          value="Sim"
+        >Sim
+        <input
+          v-model="newsletter"
+          type="radio"  
+          value="Não"
+        >Não
+        <br>
+        {{ newsletter }}
+
+      </div>
+
+
+      <div>
+        <label>Contrato</label> <br>
+        <input
+            v-model="contract"
+            type="checkbox"
+            value ="Sim"
+        > Aceita nossos termos <br>
+        <input
+            v-model="contract"
+            type="checkbox"
+            value="Não"
+        > Não aceita os termos ?
+        <br>
+        {{ contract }}
+
+      </div>
+
+
+
   </div>
-    <h1 :class="{classVar: true, 'title-home': isHome}">
+    <h1 :class="{classVar: true, 'title-home': isHome}"> <br>
       Curso Vue 3
     </h1>
+
 
     <p :class="pClass">
       Lorem ipsum dolor sit amet, etc
     </p>
 
+
     <p :style="styleClass">
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
     </p>
+
 
     <div v-for="(obj, index) in todos"
          :key="obj.id"
          class="todos-item"
     >
+
+
     <img
         :src="obj.imgSrc"
     >
      {{ index }} - {{ obj.title }}
     </div>
+
 
 </div>
   
@@ -52,6 +116,9 @@ export default {
   data(){
     return{
       name: '',
+      sports: '',
+      newsletter: '',
+      contract: [],
       styleClass: {'color': 'aqua', 'background-color': 'black', 'font-size': '20px'},
       isHome: false,
       classVar: 'title',

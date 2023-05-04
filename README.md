@@ -91,3 +91,9 @@ v-model -> formulários
 
     >
 ```
+
+## Eventos
+```
+v-on -> capture o evento desse elemento
+<button> </button>
+```
