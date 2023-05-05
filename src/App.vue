@@ -2,7 +2,27 @@
   <div>
 
     <div>
-      <button v-on:click="onClick()">
+      WATCH
+      <input
+        v-model="name"   
+        type="text"
+      > <br>
+      {{ name }}
+
+      <br><br><br>
+      <select v-model="pageCount">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="15">15</option>
+      </select> <br>
+      {{ pageCount }}
+    </div>
+
+    <br><br>
+
+    <div>
+      EVENTOS
+      <button @click.once="onClick()">
               Enviar
             </button>
     </div>
@@ -22,7 +42,11 @@
 
       <form 
         action="https:google.com"
-        @submit="onSubmit"
+        @submit.prevent="onSubmit"
+      >
+      <input
+        type="text"
+        @keyup="onKeyUp"
       >
         <button type="submit">
           Submit
@@ -113,20 +137,6 @@
       Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
     </p>
 
-
-    <div v-for="(obj, index) in todos"
-         :key="obj.id"
-         class="todos-item"
-    >
-
-
-    <img
-        :src="obj.imgSrc"
-    >
-     {{ index }} - {{ obj.title }}
-    </div>
-
-
 </div>
   
 
@@ -141,6 +151,7 @@ export default {
   data(){
     return{
       name: '',
+      pageCount: 5,
       sports: '',
       newsletter: '',
       contract: [],
@@ -150,18 +161,31 @@ export default {
       pClass: ['text', 'text-home']
         }
     },
+    watch:{
+      name(vl){
+        if(vl.length >= 3){
+          this.saveUsername()
+        }
+      }
+    },
     methods:{
-      onClick() {
-        console.log('click');
+      saveUsername(){
+        console.log(this.name);
       },
-      onMouseOver() {
-        console.log('Mouse over');
+      onClick($evt) {
+        console.log('click', $evt);
       },
-      onMouseOut() {
-        console.log('mouse out');
+      onMouseOver($evt) {
+        console.log('Mouse over', $evt);
       },
-      onSubmit(){
-        console.log('submit');
+      onMouseOut($evt) {
+        console.log('mouse out', $evt);
+      },
+      onSubmit($evt){
+        console.log('submit', $evt);
+      },
+      onKeyUp($evt){
+        console.log('onKeyup', $evt)
       }
 
     }
@@ -183,12 +207,7 @@ export default {
 .text-home{
   color: #42b983
 }
-.todos-item{
-  background-color: #000;
-  margin: 0 0 0 0;
-  padding:3px;
-  color: #fff;
-}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

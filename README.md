@@ -131,3 +131,64 @@ methods: {
 .once
 .passive
 ```
+
+## Propriedades Computadas (computed)
+```
+computed: {
+  fullName(){
+    return `${this.user.first_name} ${this.user.last_name2}
+  }
+}
+```
+
+## Observadores (watch)
+```
+
+    <div>
+      WATCH
+      <input
+        v-model="name"   
+        type="text"
+      > <br>
+      {{ name }}
+      </div>
+<script>
+
+export default{
+  name:'App',
+  data(){
+    return{
+      name: ''
+    }
+  },
+watch:{
+  name(newValue, oldValue){
+    console.log('Ajax');
+    console.log(newValue, oldValue);
+    }
+  },
+
+
+  OU
+
+export default{
+  name:'App',
+    data(){
+      return{
+        name: ''
+    }
+  },
+  watch:{
+    name(){
+      this.saveUserName()
+  }
+},
+methods:{
+  saveUserName(){
+    console.log(this.name);
+  }
+}
+
+}
+</script>
+```
