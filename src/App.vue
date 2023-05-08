@@ -1,8 +1,56 @@
 <template>
+
+  <AppProduct />
+
+
+<div class="titulo"> PROPS </div> <br>
   <div>
+    <BaseAlert 
+    variant="success" 
+    text="Seu formulário foi enviado"
+    />
+  </div>
+
+  <br><br>
 
     <div>
-      WATCH
+        <BaseCard />
+    </div><br>
+
+  <div class="titulo">SLOT</div><br>
+  <div>
+    <TheHeader>
+      <template v-slot:title>
+          Home
+    </template>
+
+      <template v-slot:description>
+        <p>dasdsasdasd</p>
+      </template>
+
+    </TheHeader>
+  </div>
+
+  <br><br>
+
+  <div>
+    <div class="titulo">HOOKS</div><br>
+    <div>
+      <TheHeader v-if="showHeader"/>
+      <h1>Hello World</h1> <br>
+      <input v-model="name" type="text"> <br><br>
+      <button @click="showHeader = !showHeader">
+        Ativar e desativar header
+      </button> <br><br>
+      {{ name }}
+</div>
+
+    <br><br>
+
+    <div class="titulo">WATCH</div><br>
+
+    <div>
+
       <input
         v-model="name"   
         type="text"
@@ -20,8 +68,9 @@
 
     <br><br>
 
+    <div class="titulo">EVENTOS</div><br>
     <div>
-      EVENTOS
+
       <button @click.once="onClick()">
               Enviar
             </button>
@@ -138,61 +187,107 @@
     </p>
 
 </div>
-  
 
+ 
 
 </template>
 
 <script>
+import TheHeader from './components/TheHeader.vue';
+import BaseCard from './components/BaseCard.vue';
+import BaseAlert from './components/BaseAlert.vue'
+import AppProduct from './components/Products/AppProduct.vue';
 
 
 export default {
-  name: 'App',
-  data(){
-    return{
-      name: '',
-      pageCount: 5,
-      sports: '',
-      newsletter: '',
-      contract: [],
-      styleClass: {'color': 'aqua', 'background-color': 'black', 'font-size': '20px'},
-      isHome: false,
-      classVar: 'title',
-      pClass: ['text', 'text-home']
+    name: "App",
+    components: { TheHeader, BaseCard, BaseAlert, AppProduct },
+    data() {
+        return {
+            name: "Jon Snow",
+            showHeader: 'true',
+            pageCount: 5,
+            sports: "",
+            newsletter: "",
+            contract: [],
+            styleClass: { "color": "aqua", "background-color": "black", "font-size": "20px" },
+            isHome: false,
+            classVar: "title",
+            pClass: ["text", "text-home"]
+        };
+    },
+    beforeUpdate() {
+      console.log('beforeUpdate');
+    },
+    updated(){
+      console.log('updated');
+    },
+    // beforeCreate() {
+    //     console.log("beforeCreate");
+    //     console.log("Estado: ", this.name);
+    //     console.log("DOM: ", this.$el);
+    // },
+    // created() {
+    //     console.log("created");
+    //     console.log("Estado: ", this.name);
+    //     console.log("DOM: ", this.$el);
+    // },
+    // beforeMount() {
+    //     console.log("beforeMount");
+    //     console.log("Estado: ", this.name);
+    //     console.log("DOM: ", this.$el);
+    // },
+    // mounted() {
+    //     console.log("mounted");
+    //     console.log("Estado: ", this.name);
+    //     console.log("DOM: ", this.$el);
+    // },
+    // beforeUnmount() {
+    //     console.log("beforeUnmount");
+    // },
+    // unmounted() {
+    //     console.log("unmounted");
+    // },
+    watch: {
+        name(vl) {
+            if (vl.length >= 3) {
+                this.saveUsername();
+            }
         }
     },
-    watch:{
-      name(vl){
-        if(vl.length >= 3){
-          this.saveUsername()
+    methods: {
+        saveUsername() {
+            console.log(this.name);
+        },
+        onClick($evt) {
+            console.log("click", $evt);
+        },
+        onMouseOver($evt) {
+            console.log("Mouse over", $evt);
+        },
+        onMouseOut($evt) {
+            console.log("mouse out", $evt);
+        },
+        onSubmit($evt) {
+            console.log("submit", $evt);
+        },
+        onKeyUp($evt) {
+            console.log("onKeyup", $evt);
         }
-      }
     },
-    methods:{
-      saveUsername(){
-        console.log(this.name);
-      },
-      onClick($evt) {
-        console.log('click', $evt);
-      },
-      onMouseOver($evt) {
-        console.log('Mouse over', $evt);
-      },
-      onMouseOut($evt) {
-        console.log('mouse out', $evt);
-      },
-      onSubmit($evt){
-        console.log('submit', $evt);
-      },
-      onKeyUp($evt){
-        console.log('onKeyup', $evt)
-      }
-
-    }
-  }
+}
 </script>
 
 <style>
+.header{
+  background: #000;
+  color: #fff;
+}
+.titulo{
+  font-size: 20px;
+  color: red;
+  font: bold;
+}
 .title{
   font-size: 20px;
   color: blue;

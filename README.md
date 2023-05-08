@@ -192,3 +192,89 @@ methods:{
 }
 </script>
 ```
+
+## Life Cycle(ciclo de vida)
+```
+
+// Criação
+    // Preparar o Componente (Ajax, inicaliazir algumas variáveis)
+    //(Não tem acesso ao template (DOM))
+
+// Montagem
+    // Inicializar uma lib externa
+    // Precisa de acesso ao template (DOM)
+    // Tem acesso ao template (DOM)
+// Atualização
+    // Debug
+    // Update
+
+// Desmontagem
+    // Remover tudo o que for necessario (lib -> destroy())
+    // para liberar memória
+
+
+
+
+// HOOKS
+()beforeCreate(){
+    console.log('beforeCreate')
+},
+created(){
+  console.log('created')
+},
+beforeMount(){
+  console.log('beforeMount')
+},
+mounted(){
+  console.log('mounted')
+},
+beforeUnmount(){
+  console.log('beforeUnmount')
+},
+unmounted(){
+  console.log('unmounted')
+},
+```
+
+## SLOTS (COMPONENTES)
+```
+
+  <div class="titulo">SLOT</div><br>
+  <div>
+    <TheHeader>
+      <template v-slot:title>
+          Home
+    </template>
+
+      <template v-slot:description>
+        <p>dasdsasdasd</p>
+      </template>
+
+    </TheHeader>
+  </div>
+
+
+```
+
+## Scoped e Global CSS ()
+```
+Podemos criar um novo componente global com css, mas isso seria para todos que aderirem a classe ex: card
+
+OU
+
+<style scoped> </style>
+
+podemos criar um style scoped, que é apenas no local que você deseja que o css atue
+```
+
+## Dados para o componente filho (props)
+
+```
+Podemos criar com formas de alterar o css da div
+
+<div :class="['alert', {
+        'alert-success': variant === 'success',
+        'alert-danger': variant === 'danger',
+}]">
+
+```
