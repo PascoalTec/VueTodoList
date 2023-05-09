@@ -1,20 +1,34 @@
 <template>
 
-  <AppProduct />
+<div class="titulo"> EMIT </div> <br>
+  <div>
+    <BaseAlert
+    v-if="showAlert"
+    :variant="variant"
+    @close="onClose"
+    >
+    {{ text }}
+    </BaseAlert>
+  </div>
+
+
 
 
 <div class="titulo"> PROPS </div> <br>
   <div>
-    <BaseAlert 
-    variant="success" 
-    text="Seu formulário foi enviado"
-    />
+    <BaseAlert
+    :variant="variant"
+    >
+    {{ text }}
+    </BaseAlert>
   </div>
+
 
   <br><br>
 
     <div>
         <BaseCard />
+
     </div><br>
 
   <div class="titulo">SLOT</div><br>
@@ -196,12 +210,12 @@
 import TheHeader from './components/TheHeader.vue';
 import BaseCard from './components/BaseCard.vue';
 import BaseAlert from './components/BaseAlert.vue'
-import AppProduct from './components/Products/AppProduct.vue';
+
 
 
 export default {
     name: "App",
-    components: { TheHeader, BaseCard, BaseAlert, AppProduct },
+    components: { TheHeader, BaseCard, BaseAlert},
     data() {
         return {
             name: "Jon Snow",
@@ -213,7 +227,10 @@ export default {
             styleClass: { "color": "aqua", "background-color": "black", "font-size": "20px" },
             isHome: false,
             classVar: "title",
-            pClass: ["text", "text-home"]
+            pClass: ["text", "text-home"],
+            variant: 'success',
+            text: 'Seu formulário foi enviado',
+            showAlert: true
         };
     },
     beforeUpdate() {
@@ -256,6 +273,10 @@ export default {
         }
     },
     methods: {
+        onClose(){
+          this.showAlert = false
+            console.log('on close');
+        },
         saveUsername() {
             console.log(this.name);
         },

@@ -278,3 +278,26 @@ Podemos criar com formas de alterar o css da div
 }]">
 
 ```
+
+## Dados do filho para o pai (emit)
+```
+<PAI> -> props
+  <FILHO>
+      <NETO>
+    emit - event
+      </NETO>
+  </FILHO>
+</PAI>
+
+
+<div class="titulo"> EMIT </div> <br>
+  <div>
+    <BaseAlert
+    v-if="showAlert"
+    :variant="variant"
+    @close="onClose"
+    >
+    {{ text }}
+    </BaseAlert>
+  </div>
+```
